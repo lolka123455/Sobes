@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.sobes.data.di.IODispatcher
 import com.example.sobes.domain.usecase.answers.GetAllListAnswersCardsUseCase
-import com.example.sobes.domain.usecase.answers.SearchByNameAnswersCardsUseCase
+import com.example.sobes.domain.usecase.answers.SearchAnswerCardsByMatchWordUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.FlowPreview
@@ -22,7 +22,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchAllAnswerCardsViewModel @Inject constructor(
     @IODispatcher private val ioDispatcher: CoroutineDispatcher,
-    private val searchByNameAnswersCardsUseCase: SearchByNameAnswersCardsUseCase,
+    private val searchAnswerCardsByMatchWordUseCase: SearchAnswerCardsByMatchWordUseCase,
     private val getAllListAnswersCardsUseCase: GetAllListAnswersCardsUseCase
 ) : ViewModel(), ContainerHost<SearchAllAnswerCardsState, Nothing> {
 
@@ -59,7 +59,7 @@ class SearchAllAnswerCardsViewModel @Inject constructor(
                     if (searchText.isBlank()) {
                         getAllListAnswerCards()
                     } else {
-                        val filteredAnswerCards = searchByNameAnswersCardsUseCase.invoke(searchText)
+                        val filteredAnswerCards = searchAnswerCardsByMatchWordUseCase.invoke(searchText)
                         reduce {
                             state.copy(listAnswerCards = filteredAnswerCards)
                         }

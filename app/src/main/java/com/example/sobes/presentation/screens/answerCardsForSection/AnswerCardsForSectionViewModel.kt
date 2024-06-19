@@ -7,7 +7,7 @@ import com.example.sobes.domain.model.AnswerCard
 import com.example.sobes.domain.usecase.answers.CreateAnswerCardUseCase
 import com.example.sobes.domain.usecase.answers.DeleteSelectedAnswerCardUseCase
 import com.example.sobes.domain.usecase.answers.GetAllListAnswerCardsBySectionIdUseCase
-import com.example.sobes.domain.usecase.answers.SearchByNameAnswersCardsUseCase
+import com.example.sobes.domain.usecase.answers.SearchAnswerCardsByMatchWordUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.FlowPreview
@@ -28,7 +28,7 @@ class AnswerCardsForSectionViewModel @Inject constructor(
     private val createAnswerCardUseCase: CreateAnswerCardUseCase,
     private val deleteSelectedAnswerCardUseCase: DeleteSelectedAnswerCardUseCase,
     private val getAllListAnswerCardsBySectionIdUseCase: GetAllListAnswerCardsBySectionIdUseCase,
-    private val searchByNameAnswersCardsUseCase: SearchByNameAnswersCardsUseCase
+    private val searchAnswerCardsByMatchWordUseCase: SearchAnswerCardsByMatchWordUseCase
 ) : ViewModel(), ContainerHost<AnswerCardsForSectionState, Nothing> {
 
     private val searchAnswerCardsFlow = MutableStateFlow("")
@@ -104,7 +104,7 @@ class AnswerCardsForSectionViewModel @Inject constructor(
                     if (searchText.isBlank()) {
                         getAllListAnswerCardsBySectionId(state.sectionId)
                     } else {
-                        val filteredAnswerCards = searchByNameAnswersCardsUseCase.invoke(searchText)
+                        val filteredAnswerCards = searchAnswerCardsByMatchWordUseCase.invoke(searchText)
                         reduce {
                             state.copy(listAnswerCards = filteredAnswerCards)
                         }

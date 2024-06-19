@@ -6,7 +6,7 @@ interface AnswersRepository {
 
     suspend fun getAllListAnswersCards(): List<AnswerCard>
 
-    suspend fun searchByNameAnswersCards(searchText: String): List<AnswerCard>
+    suspend fun searchAnswerCardsByMatchWord(searchText: String): List<AnswerCard>
 
     suspend fun getAllListAnswerCardsBySectionId(sectionId: String): List<AnswerCard>
 

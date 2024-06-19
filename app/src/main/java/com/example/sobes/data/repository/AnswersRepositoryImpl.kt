@@ -17,8 +17,8 @@ class AnswersRepositoryImpl @Inject constructor(
             .map { answerCardMapper.fromEntityToDomain(it) }
     }
 
-    override suspend fun searchByNameAnswersCards(searchText: String): List<AnswerCard> {
-        return database.answerCardDao().searchAnswerCardsByName("%$searchText%")
+    override suspend fun searchAnswerCardsByMatchWord(searchText: String): List<AnswerCard> {
+        return database.answerCardDao().searchAnswerCardsByMatchWord("%$searchText%")
             .map { answerCardMapper.fromEntityToDomain(it) }
     }
 

@@ -17,8 +17,18 @@ interface AnswerCardDao {
     @Query("SELECT * FROM $ANSWER_CARD_TABLE")
     suspend fun getAllAnswerCards(): List<AnswerCardEntity>
 
-    @Query("SELECT * FROM $ANSWER_CARD_TABLE WHERE titleCard LIKE :searchText")
-    suspend fun searchAnswerCardsByName(searchText: String): List<AnswerCardEntity>
+    @Query(
+        """
+        SELECT * FROM $ANSWER_CARD_TABLE 
+        WHERE titleCard LIKE :searchText OR descriptionAnswer LIKE :searchText
+        ORDER BY 
+            CASE 
+                WHEN titleCard LIKE :searchText THEN 1 
+                ELSE 2 
+            END
+    """
+    )
+    suspend fun searchAnswerCardsByMatchWord(searchText: String): List<AnswerCardEntity>
 
     @Query("SELECT * FROM $ANSWER_CARD_TABLE WHERE sectionId = :sectionId")
     suspend fun getAnswerCardsBySectionId(sectionId: String): List<AnswerCardEntity>

@@ -150,8 +150,7 @@ fun HomeScreen(
 
             LazyColumn(
                 modifier = Modifier
-                    .weight(1f)
-                    .padding(bottom = 100.dp),
+                    .weight(1f),
                 contentPadding = PaddingValues(16.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {

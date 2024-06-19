@@ -91,8 +91,7 @@ fun EditAnswerCardScreen(
 
                 DescriptionField(
                     modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
+                        .weight(1f),
                     title = R.string.answer,
                     description = state.description ?: "",
                     onTextChanged = remember { { viewModel.updateAnswerCardDescription(it) } }
@@ -118,8 +117,7 @@ fun EditAnswerCardScreen(
 
                 DescriptionField(
                     modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
+                        .weight(1f),
                     title = R.string.answer,
                     isReadOnly = true,
                     description = state.description ?: "",

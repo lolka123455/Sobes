@@ -82,19 +82,16 @@ fun SobesApp(
         Column(
             Modifier
                 .fillMaxSize()
-                .wrapContentHeight()
+                .padding(bottom = paddingValues.calculateBottomPadding()) // Используем только нижний отступ
         ) {
-
             NavHost(
                 appState = appState,
                 startDestination = Screen.Home,
                 setBottomBarVisibility = { isBottomBarVisible.value = it },
                 bottomBarHeight = paddingValues.calculateBottomPadding(),
             )
-
         }
     }
-
 }
 
 @Composable

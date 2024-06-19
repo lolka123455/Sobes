@@ -63,7 +63,7 @@ fun EditAnswerCardScreen(
 
     if (state.isNormalMode) {
         Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+            Column(modifier = Modifier.fillMaxSize()) {
                 MultiActionToolbar(
                     titleId = R.string.edit_title,
                     onLeftBtnClick = navController::popBackStack,
@@ -83,7 +83,7 @@ fun EditAnswerCardScreen(
                     showMiddleIcon = true
                 )
                 SimpleTextField(
-                    modifier = Modifier.padding(bottom = 16.dp),
+                    modifier = Modifier.padding(bottom = 16.dp, start = 16.dp, end = 16.dp),
                     value = state.title ?: "",
                     onTextChange = remember { { viewModel.updateAnswerCardName(it) } }
                 )
@@ -91,6 +91,7 @@ fun EditAnswerCardScreen(
 
                 DescriptionField(
                     modifier = Modifier
+                        .padding(start = 16.dp, end = 16.dp)
                         .weight(1f),
                     title = R.string.answer,
                     description = state.description ?: "",
@@ -101,14 +102,14 @@ fun EditAnswerCardScreen(
         }
     } else {
         Box(modifier = Modifier.fillMaxSize()) {
-            Column(modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+            Column(modifier = Modifier.fillMaxSize()) {
                 MultiActionToolbar(
                     titleId = R.string.app_name,
                     onLeftBtnClick = navController::popBackStack,
                     showMiddleIcon = false
                 )
                 SimpleTextField(
-                    modifier = Modifier.padding(bottom = 16.dp),
+                    modifier = Modifier.padding(bottom = 16.dp,start = 16.dp, end = 16.dp),
                     value = state.title ?: "",
                     isReadOnly = true,
                     onTextChange = remember { { viewModel.updateAnswerCardName(it) } }
@@ -117,6 +118,7 @@ fun EditAnswerCardScreen(
 
                 DescriptionField(
                     modifier = Modifier
+                        .padding(start = 16.dp, end = 16.dp)
                         .weight(1f),
                     title = R.string.answer,
                     isReadOnly = true,
